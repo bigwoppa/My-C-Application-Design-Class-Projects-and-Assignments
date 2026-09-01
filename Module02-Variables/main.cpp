@@ -132,7 +132,7 @@ void deleteRecord() {
 int main() {
     int choice = 0;
 
-    while (choice != 4) {
+    while (choice != 5) {
         cout << "\n=== MY APPLICATION ===" << endl;
         cout << "1. Add Record" << endl;
         cout << "2. View Records" << endl;
