@@ -136,7 +136,12 @@ int main() {
         cout << "5. Clear All Records" << endl;
         cout << "6. Exit" << endl;
         cout << "Choose an option: ";
-        cin >> choice;
+        if (!(cin >> choice)) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input. Please enter a number." << endl;
+        continue;
+        }
 
         switch (choice) {
             case 1:
