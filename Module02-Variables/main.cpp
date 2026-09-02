@@ -75,60 +75,46 @@ void searchRecords() {
                     file.close();
                 };
 void deleteRecord() {
-                    string targetName;
-                    cout << "Enter name to delete: ";
-                    cin >> targetName;
-                    
-                    ifstream file("records.csv");
-                    if (!file) {
-                        cout << "Error opening file." << endl;
-                        return;
-                    }
-                    string line;
-                    bool found = false;
+    string targetName;
+    cout << "Enter name to delete: ";
+    cin >> targetName;
 
-                    // read file line by line
-                    while (getline(file, line)) {
-                        stringstream ss(line);
-                        string cell;
-                        vector<string> row;
-                        // split line by comma
-                        while (getline(ss, cell, ',')) {
-                            row.push_back(cell);
-                        }
-                        // check if the name matches
-                        if (!row.empty() && row[0] == targetName) {
-                            cout << "Record found: " << line << endl;
-                            found = true;
-                            // Close the input file before deleting
-                            file.close();
-                            // Delete the record by creating a temporary file
-                            ifstream inFile("records.csv");
-                            ofstream outFile("temp.csv");
-                            while (getline(inFile, line)) {
-                                stringstream ss(line);
-                                string cell;
-                                vector<string> row;
-                                while (getline(ss, cell, ',')) {
-                                    row.push_back(cell);
-                                }
-                                if (!row.empty() && row[0] != targetName) {
-                                    outFile << line << endl;
-                                }
-                            }
-                            inFile.close();
-                            outFile.close();
-                            // Replace the original file with the temporary file
-                            remove("records.csv");
-                            rename("temp.csv", "records.csv");
+    ifstream inFile("records.csv");
+    ofstream outFile("temp.csv");
 
-                        }
-                    }
-                if (!found) {
-                            cout << "Record not found." << endl;
-                    }
-                    file.close();
-                };
+    if (!inFile || !outFile) {
+        cout << "Error opening file." << endl;
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string name;
+
+        getline(ss, name, ',');
+
+        if (name == targetName) {
+            found = true;
+        } else {
+            outFile << line << endl;
+        }
+    }
+
+    inFile.close();
+    outFile.close();
+
+    if (found) {
+        remove("records.csv");
+        rename("temp.csv", "records.csv");
+        cout << "Record deleted." << endl;
+    } else {
+        remove("temp.csv");
+        cout << "Record not found." << endl;
+    }
+}
 int main() {
     int choice = 0;
 
