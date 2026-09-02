@@ -74,6 +74,15 @@ void searchRecords() {
                     }
                     file.close();
                 };
+
+void clearRecords() {
+    ofstream file("records.csv", ios::trunc);
+
+    file.close();
+
+    cout << "All records cleared." << endl;
+}
+
 void deleteRecord() {
     string targetName;
     cout << "Enter name to delete: ";
@@ -118,13 +127,14 @@ void deleteRecord() {
 int main() {
     int choice = 0;
 
-    while (choice != 5) {
+    while (choice != 6) {
         cout << "\n=== MY APPLICATION ===" << endl;
         cout << "1. Add Record" << endl;
         cout << "2. View Records" << endl;
         cout << "3. Search" << endl;
         cout << "4. Delete Record" << endl;
-        cout << "5. Exit" << endl;
+        cout << "5. Clear All Records" << endl;
+        cout << "6. Exit" << endl;
         cout << "Choose an option: ";
         cin >> choice;
 
@@ -142,7 +152,10 @@ int main() {
                 deleteRecord();
                 break;
             case 5:
-                cout << "Goodbye!" << endl;
+                clearRecords();
+                break;
+            case 6:
+                cout << "Exiting the program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Try again." << endl;
