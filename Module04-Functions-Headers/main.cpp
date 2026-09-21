@@ -27,9 +27,9 @@ int main() {
     
     string *Pincome = &MedianAnnual[0];
 
-    for (int i = 0; i < 10; i++) {
-        cout << left << setw(35) << Majors[i] << 
-        right << setw(12) << ": " << MedianAnnual[i] << 
+    for (int i = 0; i < count; i++) {
+        cout << left << setw(35) << Majors[i] << ":" <<
+        right << setw(3) << MedianAnnual[i] << 
         setw(12) << ", Unemployment Rate: " << UnemploymentRate[i] << "%" << endl;
     }
 
