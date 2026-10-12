@@ -13,3 +13,4 @@ Currently Completed Modules 1-7
 
 
 # Instructions to run Application
+Go to module folder, check the readme for instructiona and info about the project to run it.
