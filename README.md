@@ -9,7 +9,7 @@ I plan to build a Multithreaded Quant Backtester Engine
 make trades)
 
 # Modules Completed
-=None
+Currently Completed Modules 1-7
 
 
 # Instructions to run Application
